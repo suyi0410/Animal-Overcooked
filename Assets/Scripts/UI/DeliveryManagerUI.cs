@@ -3,9 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DeliveryManagerUI : MonoBehaviour{
-
-
+public class DeliveryManagerUI : MonoBehaviour
+{
     [SerializeField] private Transform container;
     [SerializeField] private Transform recipeTemplate;
 
@@ -21,8 +20,8 @@ public class DeliveryManagerUI : MonoBehaviour{
 
         UpdateVisual();
     }
-
-     private void DeliveryManager_OnRecipeSpawned(object sender, EventArgs e)
+    
+    private void DeliveryManager_OnRecipeSpawned(object sender, EventArgs e)
     {
         UpdateVisual();
     }
@@ -32,24 +31,20 @@ public class DeliveryManagerUI : MonoBehaviour{
         UpdateVisual();
     }
 
-    private void UpdateVisual(){
-            foreach (Transform child in container){
-                if (child == recipeTemplate) continue;
-                Destroy(child.gameObject);
-            }
+    private void UpdateVisual()
+    {
+        foreach (Transform child in container)
+        {
+            if (child == recipeTemplate) continue;
+            Destroy(child.gameObject);
+        }
 
-            foreach (RecipeSO recipeSO in DeliveryManager.Instance.GetWaitingRecipeSOList()){
-                Transform recipeTransform = Instantiate(recipeTemplate, container);
-                recipeTransform.gameObject.SetActive(true);
-            }
-     }
+        foreach (RecipeSO recipeSO in DeliveryManager.Instance.GetWaitingRecipeSOList())
+        {
+            Transform recipeTransform = Instantiate(recipeTemplate, container);
+            recipeTransform.gameObject.SetActive(true);
+            recipeTransform.GetComponent<DeliveryManagerSingleUI>().setRecipeSO(recipeSO);
 
-
-
-
-
-
-
-
-
+        }
+    }
 }
