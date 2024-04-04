@@ -123,9 +123,29 @@ public class StoveCounter : BaseCounter, IHasProgress{
             }
         } else{
             // 柜子上有物品
-            if (player.HasKitchenObject()){
-                // 角色有物品
-            } else{
+           if (player.HasKitchenObject())
+{
+	     // 角色有物品
+	     if (player.GetKitchenObject().TryGetPlate(out PlateKitchenObject plateKitchenObject))
+	     {
+		      // 角色拿的是盘子
+		      if (plateKitchenObject.TryAddIngredient(GetKitchenObject().GetKitchenObjectSO()))
+		      {
+				    GetKitchenObject().DestroySelf();
+				
+				    state = State.Idle;
+	 
+				    OnStateChanged?.Invoke(this, new OnStateChangedEventArgs
+				    {
+					     state = state
+				    });
+	 
+				    OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs {
+					     progressNormalized = 0f
+				    });
+		      }
+	     }
+    }else{
                 // 角色没有物品，拾取物品
                 GetKitchenObject().SetKitchenObjectParent(player);
                 state = State.Idle;

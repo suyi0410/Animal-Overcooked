@@ -34,6 +34,16 @@ public class CuttingCounter : BaseCounter, IHasProgress{
                 // 柜子上有物品
                 if (player.HasKitchenObject()){
                     // 角色有物品
+                    if (player.GetKitchenObject().TryGetPlate(out PlateKitchenObject plateKitchenObject)){
+		  // 角色拿的是盘子
+		  // PlateKitchenObject plateKitchenObject = player.GetKitchenObject() as PlateKitchenObject;
+		  if (plateKitchenObject.TryAddIngredient(GetKitchenObject().GetKitchenObjectSO()))
+		  {
+				GetKitchenObject().DestroySelf();
+		  }
+                        
+                    }
+                    
                 } else{
                     // 角色没有物品，拾取物品
                     GetKitchenObject().SetKitchenObjectParent(player);
