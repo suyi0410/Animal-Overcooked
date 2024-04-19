@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LoadingScene.unity
     guid: 0b9aa759d682a9a4ab760fefcc373cc4
+  - enabled: 1
+    path: Assets/Scenes/intor_storyBG.unity
+    guid: c6560fafd010b444da345761750ba3c4
   m_configObjects: {}

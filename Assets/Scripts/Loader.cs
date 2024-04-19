@@ -9,7 +9,8 @@ public static class Loader{
         {
             MainMenuScene,
             GameScene,
-            LoadingScene
+            LoadingScene,
+            intor_storyBG
         }
 
         private static Scene targetScene;
