@@ -4,10 +4,12 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class MainMenuUI : MonoBehaviour
+public class MainMenuUI2: MonoBehaviour
 {
     [SerializeField] private Button playButton;
     [SerializeField] private Button quitButton;
+    [SerializeField] private Button achievement;
+    [SerializeField] private Button options;
 
         private void Awake()
     {
@@ -20,6 +22,8 @@ public class MainMenuUI : MonoBehaviour
         {
             Application.Quit();
         });
+        achievement.onClick.AddListener(() => { SceneManager.LoadScene("Achievement"); });
+        options.onClick.AddListener(() => { SceneManager.LoadScene("Options"); });
 
         Time.timeScale = 1f;
     }
