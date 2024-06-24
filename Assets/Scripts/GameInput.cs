@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 
 public class GameInput : MonoBehaviour{
 
-    private const string PLAYER_PREFS_BINDINGS = "InputBindings"; 
+    //private const string PLAYER_PREFS_BINDINGS = "InputBindings"; 
 
 
     public static GameInput Instance { get; private set; }
@@ -35,9 +35,9 @@ public class GameInput : MonoBehaviour{
         playerInputActions = new PlayerInputActions();
 
 
-        if (PlayerPrefs.HasKey(PLAYER_PREFS_BINDINGS)){
-            playerInputActions.LoadBindingOverridesFromJson(PlayerPrefs.GetString(PLAYER_PREFS_BINDINGS));
-        }
+        //if (PlayerPrefs.HasKey(PLAYER_PREFS_BINDINGS)){
+            //playerInputActions.LoadBindingOverridesFromJson(PlayerPrefs.GetString(PLAYER_PREFS_BINDINGS));
+        //}
 
         
         playerInputActions.Player.Enable();
@@ -137,8 +137,8 @@ public class GameInput : MonoBehaviour{
                 playerInputActions.Player.Enable();
                 onActionRebound();
 
-                PlayerPrefs.SetString(PLAYER_PREFS_BINDINGS, playerInputActions.SaveBindingOverridesAsJson());
-                PlayerPrefs.Save();
+                //PlayerPrefs.SetString(PLAYER_PREFS_BINDINGS, playerInputActions.SaveBindingOverridesAsJson());
+                //PlayerPrefs.Save();
             })
             .Start();
     }
