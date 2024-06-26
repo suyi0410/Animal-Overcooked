@@ -7,6 +7,7 @@ using System;
 
 public class OptionsUI : MonoBehaviour
 {
+    
     public static OptionsUI Instance { get; private set; }
 
     [SerializeField] private Button soundEffectsButton;
@@ -36,8 +37,8 @@ public class OptionsUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI gamepadPauseText;
     [SerializeField] private Transform pressToRebindKeyTransform;
 
-
     private Action onCloseButtonAction;
+
 
     private void Awake()
     {
