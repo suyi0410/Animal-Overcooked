@@ -12,7 +12,7 @@ public class IntorStoryMenuUI: MonoBehaviour
         private void Awake()
     {
         IntoGameButton.onClick.AddListener(() =>{
-            Loader.Load(Loader.Scene.GameScene);
+            Loader.Load(Loader.Scene.Level);
         });
         
         

@@ -9,7 +9,7 @@ public class MainMenuUI3: MonoBehaviour
     [SerializeField] private Button playButton;
     [SerializeField] private Button quitButton;
     [SerializeField] private Button achievement;
-    [SerializeField] private Button options;
+    
 
         private void Awake()
     {
@@ -24,10 +24,7 @@ public class MainMenuUI3: MonoBehaviour
             SceneManager.LoadScene("Achievement"); 
             });
         
-        options.onClick.AddListener(() => {
-            SceneManager.LoadScene("Options");
-            
-        });
+        
 
         Time.timeScale = 1f;
     }

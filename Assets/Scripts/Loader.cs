@@ -8,9 +8,11 @@ public static class Loader{
         public enum Scene
         {
             MainMenuScene,
-            GameScene,
+            GameScene_Easy,
             LoadingScene,
-            intor_storyBG
+            intor_storyBG,
+            Level,
+            GameScene_Tutorial
         }
 
         private static Scene targetScene;
