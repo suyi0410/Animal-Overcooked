@@ -2,12 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Unity.Netcode;
 
-public class Player : NetworkBehaviour, IKitchenObjectParent{
+public class Player : MonoBehaviour, IKitchenObjectParent{
 
 	
-	//public static Player Instance{ get; private set ;}
+	public static Player Instance{ get; private set ;}
 
 
 
@@ -18,7 +17,7 @@ public class Player : NetworkBehaviour, IKitchenObjectParent{
     }
    
 	[SerializeField] private float moveSpeed = 7f;
-    
+    [SerializeField] private GameInput gameInput;
 	[SerializeField] private LayerMask countersLayerMask;
 	[SerializeField] private Transform kitchenObjectHoldPoint;
 	    
@@ -29,11 +28,14 @@ public class Player : NetworkBehaviour, IKitchenObjectParent{
 	private KitchenObject kitchenObject;
 
 	private void Awake(){
-		//Instance = this;
+		if (Instance != null){
+            Debug.LogError("There is more than one Player instance");
+        }
+		Instance = this;
 	}
 	private void Start(){
-		GameInput.Instance.OnInteractAction += GameInput_OnInteractAction;
-        GameInput.Instance.OnInteractAlternateAction += GameInput_OnInteractAlternateAction;
+		gameInput.OnInteractAction += GameInput_OnInteractAction;
+		gameInput.OnInteractAlternateAction += GameInput_OnInteractAlternateAction;
 	}
 	
 	private void GameInput_OnInteractAlternateAction(object sender, EventArgs e){
@@ -63,7 +65,7 @@ public class Player : NetworkBehaviour, IKitchenObjectParent{
     }
 
     private void HandleInteractions(){
-        Vector2 inputVector = GameInput.Instance.GetMovementVectorNormalized();
+        Vector2 inputVector = gameInput.GetMovementVectorNormalized();
 	  
 		Vector3 moveDir = new Vector3(inputVector.x, 0f, inputVector.y);
 
@@ -95,7 +97,7 @@ public class Player : NetworkBehaviour, IKitchenObjectParent{
 		private void HandleMovement(){
 		   
     
-			Vector2 inputVector = GameInput.Instance.GetMovementVectorNormalized();
+			Vector2 inputVector = gameInput.GetMovementVectorNormalized();
        
 			Vector3 moveDir = new Vector3(inputVector.x, 0f, inputVector.y);
         
